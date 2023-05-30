@@ -4,9 +4,10 @@ from mongoengine import connect
 import os
 from app.models.users import User
 from dotenv import load_dotenv
-from app.api.users.user_signup import signup_router
+from app.api.users.user_authentication import authentication_router
+
+connect(host="mongodb", port=27017, username="root", password="root", db="tweets")
 
 app = FastAPI()
 
-app.include_router(signup_router)
-
+app.include_router(authentication_router)

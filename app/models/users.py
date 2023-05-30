@@ -1,7 +1,5 @@
 import os
-from mongoengine import Document, connect, StringField, DateField
-
-connect(host="localhost", port=27017, username="root", password="root", db="tweets")
+from mongoengine import Document, StringField, DateField
 
 
 class User(Document):
