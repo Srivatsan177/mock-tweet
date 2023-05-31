@@ -1,6 +1,6 @@
+from typing import Optional
+
 from pydantic import BaseModel
-from typing import *
-from hashlib import sha256
 
 
 class UserSignupSchema(BaseModel):
@@ -8,6 +8,7 @@ class UserSignupSchema(BaseModel):
     username: str
     name: str
     password: str
+
 
 class UserSigninSchema(BaseModel):
     username: Optional[str]

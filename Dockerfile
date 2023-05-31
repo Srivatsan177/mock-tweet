@@ -7,6 +7,7 @@ ENV PATH="$PATH:/${POETRY_HOME}/bin"
 
 RUN apt update && \
 apt install curl -y && \
+apt install git -y && \
 curl -sSL https://install.python-poetry.org | python3 - && \
 poetry config virtualenvs.create false
 COPY . .

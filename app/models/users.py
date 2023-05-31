@@ -1,5 +1,4 @@
-import os
-from mongoengine import Document, StringField, DateField
+from mongoengine import DateField, Document, StringField
 
 
 class User(Document):
