@@ -3,6 +3,8 @@ import logging
 from fastapi import FastAPI
 from mongoengine import connect
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.api.tweets.tweets import tweets_router
 from app.api.users.user_authentication import authentication_router
 from lib.core.utils.constants import (
@@ -11,7 +13,7 @@ from lib.core.utils.constants import (
     MONGO_DB_USERNAMAE,
 )
 
-logging.basicConfig(filename="app.log", level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 
 connect(
     host=MONGO_DB_HOST,
@@ -25,3 +27,17 @@ app = FastAPI()
 
 app.include_router(authentication_router)
 app.include_router(tweets_router)
+
+origins = [
+    "http://localhost",
+    "http://localhost:8080",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
