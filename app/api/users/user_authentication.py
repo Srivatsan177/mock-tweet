@@ -36,6 +36,6 @@ async def signin(user_details: UserSigninSchema, response: Response):
         response.status_code = status.HTTP_403_FORBIDDEN
         return {"msg": str(e)}
     except Exception:
-        logging.error(traceback.format_exc)
+        logging.error(traceback.format_exc())
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         return {"msg": "Internal Server"}

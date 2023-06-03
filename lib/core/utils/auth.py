@@ -22,9 +22,8 @@ def authentic_request(func):
     @wraps(func)
     def wrapper(*args, authorization: str, response: Response, **kwargs):
         try:
-            logging.debug(authorization)
             if jwt.decode(authorization, AUTHENTICATION_HASH_KEY, "HS256"):
-                return func(*args, authorization, **kwargs)
+                return func(*args, **kwargs, authorization=authorization, response=response)
 
         except jwt.ExpiredSignatureError:
             response.status_code = status.HTTP_403_FORBIDDEN
@@ -38,6 +37,9 @@ def authentic_request(func):
             return {"msg": "Internal Server Error"}
 
     return wrapper
+
+def decode_jwt(data):
+    return jwt.decode(data, AUTHENTICATION_HASH_KEY, "HS256")
 
 
 def hash_data(data: str) -> str:
@@ -57,4 +59,4 @@ def auth_user(user_details):
     if user.password != hash_data(user_details.password):
         raise AuthenticationException("Incorrect Password")
     else:
-        return {"jwt": get_jwt({"user": user.username, "email": user.email})}
+        return {"jwt": get_jwt({"username": user.username, "email": user.email})}
