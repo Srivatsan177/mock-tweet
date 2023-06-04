@@ -7,3 +7,13 @@ class User(Document):
     name = StringField()
     dob = DateField()
     password = StringField()
+
+    meta = {
+        "indexes": [
+            {
+                "fields": ["username"],
+                "unique": True,
+            },
+            {"fields": ["email"], "unique": True},
+        ]
+    }

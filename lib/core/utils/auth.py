@@ -23,7 +23,9 @@ def authentic_request(func):
     def wrapper(*args, authorization: str, response: Response, **kwargs):
         try:
             if jwt.decode(authorization, AUTHENTICATION_HASH_KEY, "HS256"):
-                return func(*args, **kwargs, authorization=authorization, response=response)
+                return func(
+                    *args, **kwargs, authorization=authorization, response=response
+                )
 
         except jwt.ExpiredSignatureError:
             response.status_code = status.HTTP_403_FORBIDDEN
@@ -37,6 +39,7 @@ def authentic_request(func):
             return {"msg": "Internal Server Error"}
 
     return wrapper
+
 
 def decode_jwt(data):
     return jwt.decode(data, AUTHENTICATION_HASH_KEY, "HS256")
