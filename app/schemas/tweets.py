@@ -9,3 +9,5 @@ class TweetSchema(BaseModel):
     id: str
     username: str
     tweet: str
+    like: int
+    liked_by_user: bool
