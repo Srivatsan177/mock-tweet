@@ -7,10 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.tweets.tweets import tweets_router
 from app.api.users.user_authentication import authentication_router
-from lib.core.utils.constants import (
+from core.utils.constants import (
     MONGO_DB_HOST,
     MONGO_DB_PASSWORD,
-    MONGO_DB_USERNAMAE,
+    MONGO_DB_USERNAME,
 )
 
 logging.basicConfig(level=logging.DEBUG)
@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.DEBUG)
 connect(
     host=MONGO_DB_HOST,
     port=27017,
-    username=MONGO_DB_USERNAMAE,
+    username=MONGO_DB_USERNAME,
     password=MONGO_DB_PASSWORD,
     db="tweets",
 )

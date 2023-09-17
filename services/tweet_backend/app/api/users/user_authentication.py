@@ -4,10 +4,10 @@ import traceback
 from fastapi import APIRouter, Response, status
 from mongoengine.errors import NotUniqueError
 
-from app.models.users import User
-from app.schemas.messages import GenericResponse
-from app.schemas.users import UserSigninSchema, UserSignupSchema
-from lib.core.utils.auth import AuthenticationException, auth_user, hash_data
+from core.models.users import User
+from core.schemas.messages import GenericResponse
+from core.schemas.users import UserSigninSchema, UserSignupSchema
+from core.utils.auth import AuthenticationException, auth_user, hash_data
 
 authentication_router = APIRouter(prefix="/users")
 

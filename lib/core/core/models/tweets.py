@@ -13,6 +13,7 @@ class Tweet(Document):
     tags = ListField()
     mentions = ListField()
     parent_tweet_id = ObjectIdField()
+    image_name = StringField()
 
     meta = {
         "allow_inheritance": True,

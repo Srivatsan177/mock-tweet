@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class TweetCreateSchema(BaseModel):
@@ -11,3 +12,4 @@ class TweetSchema(BaseModel):
     tweet: str
     like: int
     liked_by_user: bool
+    image_name: Optional[str] = None

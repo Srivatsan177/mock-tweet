@@ -1,6 +1,6 @@
 import pydantic
-from app.models.tweets import TweetLike
-from app.models.users import User
+from core.models.tweets import TweetLike
+from core.models.users import User
 
 
 def get_pydantic_from_mongo(

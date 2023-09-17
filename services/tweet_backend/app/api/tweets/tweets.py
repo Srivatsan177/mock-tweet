@@ -2,12 +2,12 @@ from typing import Annotated
 
 from fastapi import APIRouter, Header, Response, status
 
-from lib.core.utils.auth import authentic_request, decode_jwt
-from app.schemas.tweets import TweetCreateSchema, TweetSchema
-from app.models.tweets import Tweet, TweetLike
-from app.models.users import User
-from lib.core.utils.tweets.parsers import get_mentions_and_tags
-from lib.core.utils.tweets.rest_utils import (
+from core.utils.auth import authentic_request, decode_jwt
+from core.schemas.tweets import TweetCreateSchema, TweetSchema
+from core.models.tweets import Tweet, TweetLike
+from core.models.users import User
+from core.utils.tweets.parsers import get_mentions_and_tags
+from core.utils.tweets.rest_utils import (
     get_pydantic_from_mongo,
     tweet_liked_by_user,
 )
@@ -28,6 +28,7 @@ def home(response: Response, authorization: Annotated[str | None, Header()] = No
             tweet=tweet.tweet,
             like=TweetLike.objects(tweet_id=tweet.id).count(),
             liked_by_user=tweet_liked_by_user(tweet.id, username),
+            image_name=tweet.image_name
         )
         for tweet in Tweet.basic_tweet_objects().order_by("-_id")
     ]

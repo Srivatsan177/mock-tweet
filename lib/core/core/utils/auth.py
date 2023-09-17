@@ -7,7 +7,7 @@ from hashlib import sha256
 import jwt
 from fastapi import Response, status
 
-from app.models.users import User
+from core.models.users import User
 
 from .constants import AUTHENTICATION_HASH_KEY, PASSWORD_HASH_KEY
 
