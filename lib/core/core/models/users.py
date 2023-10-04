@@ -1,4 +1,4 @@
-from mongoengine import DateField, Document, StringField
+from mongoengine import DateField, Document, StringField, ListField
 
 
 class User(Document):
@@ -7,6 +7,8 @@ class User(Document):
     name = StringField()
     dob = DateField()
     password = StringField()
+    followers = ListField()
+    following = ListField()
 
     meta = {
         "indexes": [

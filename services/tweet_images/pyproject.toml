@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "tweet-images"
+version = "0.1.0"
+description = ""
+authors = ["srivatsan177 <ksrivatsan177@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["all"], version = "^0.103.1"}
+core = {path = "../../lib/core", develop = true}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

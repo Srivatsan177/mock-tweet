@@ -13,3 +13,6 @@ class UserSignupSchema(BaseModel):
 class UserSigninSchema(BaseModel):
     username: Optional[str]
     password: str
+
+class FollowUserSchema(BaseModel):
+    username: str
