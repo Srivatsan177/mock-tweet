@@ -39,12 +39,14 @@ export default function Tweet({
         mutate()
     }
   const navigate = useNavigate();
-  const [imageUrl, setImageURL] = useState();
+  const [imageUrl, setImageURL] = useState(null);
   useEffect(() => {
     // @ts-ignore
     const fn =async () => {
-      const s3_url = await imagesGet(`/get-s3-url/${id}`, { image_name: image_name });
-      setImageURL(s3_url)
+      if (image_name){
+        const s3_url = await imagesGet(`/get-s3-url/${id}`, { image_name: image_name });
+        setImageURL(s3_url)
+      }
     }
     fn()
   }, [])
@@ -68,15 +70,14 @@ export default function Tweet({
       >
         <CardContent
           sx={{ cursor: "pointer" }}
-          onClick={() => navigate(`/tweet/${id}`)}
         >
-          <Typography variant="h5">
+          <Typography variant="h5" onClick={() => navigate("/user", {state: {username}})}>
             <AccountCircleOutlined />
             {username}
           </Typography>
           <hr />
-          <CardMedia component="img" sx={{ width: "25%", height:"auto" }} image={imageUrl} />
-          <Typography component="pre" variant="h6">
+          {imageUrl && <CardMedia component="img" sx={{ width: "25%", height:"auto" }} image={imageUrl} />}
+          <Typography onClick={() => navigate(`/tweet/${id}`)} component="pre" variant="h6">
             {tweet}
           </Typography>
         </CardContent>

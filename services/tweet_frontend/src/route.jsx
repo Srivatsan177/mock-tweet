@@ -6,6 +6,8 @@ import { Outlet } from "react-router-dom";
 import TweetDetail from "./components/tweets/TweetDetail";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import UserProfile from "./components/users/UserProfile";
+import Users from "./components/users/Users";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ export const router = createBrowserRouter([
         path: "/tweet/:tweet_id",
         element: <TweetDetail />,
       },
+      {
+        path: "/user",
+        element: <UserProfile />,
+      },
+      {
+        path: "/search-user",
+        element: <Users />,
+      }
     ],
   },
 ]);

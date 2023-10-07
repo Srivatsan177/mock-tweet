@@ -21,6 +21,19 @@ axiosImageInstance.interceptors.request.use((config) => {
     return config
 });
 
+
+const axiosUserInstance = axios.create(
+    {
+        baseURL: `${import.meta.env.VITE_USER_HOST}/user`,
+        timeout: 10000,
+    }
+);
+
+axiosUserInstance.interceptors.request.use((config) => {
+    config["headers"] = {...config["headers"], "Authorization": Cookies.get("jwt")}
+    return config
+});
+
 export async function get(path: string) {
     const response = await axiosInstance.get(path)
     return response.data;
@@ -49,4 +62,12 @@ export async function imagesGet(path: string, data: any) {
 
 export async function imagesPost(url: string, data: any = {}) {
     await axios.put(url, data)
+}
+
+export async function userGet(data: any) {
+    return await axiosUserInstance.get("", {params: {search_username: data.username}});
+}
+
+export async function usersGet(data: any) {
+    return await axiosUserInstance.get("/list", {params: {search_username: data.username}});
 }

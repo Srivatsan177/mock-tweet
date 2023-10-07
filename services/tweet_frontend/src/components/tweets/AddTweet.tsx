@@ -34,18 +34,20 @@ export default function AddTweet({ open, handleClose }) {
         e.preventDefault()
         console.log(e)
         const tempTweet = await post("/tweet", { tweet })
-        const s3_url = await imagesGet(`/get-s3-url/${tempTweet.id}`, { image_name: imageFile.name })
-        const formData = new FormData()
-        formData.append(imageFile.name, imageFile)
-        await await fetch(s3_url, {
-            method: "PUT",
-            body: imageFile,
-            headers: {
-                "Content-Type": imageFile.type,
-            }
-        })
+        if (imageFile){
+            const formData = new FormData()
+            const s3_url = await imagesGet(`/get-s3-url/${tempTweet.id}`, { image_name: imageFile.name })
+            formData.append(imageFile.name, imageFile)
+            await await fetch(s3_url, {
+                method: "PUT",
+                body: imageFile,
+                headers: {
+                    "Content-Type": imageFile.type,
+                }
+            })
+            setImageFile(undefined)
+        }
         setTweet("")
-        setImageFile(undefined)
         handleClose(false)
     }
     return (

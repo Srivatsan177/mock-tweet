@@ -10,6 +10,7 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { SearchOutlined } from "@mui/icons-material";
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -33,7 +34,9 @@ function Navbar() {
               Twitter
             </Box>
           </Typography>
-
+          <Button onClick={() => navigate("/search-user")} sx={{color: "white"}}>
+            <SearchOutlined />
+          </Button>
           <Button id="login-button" color="inherit" onClick={handleClick}>
             <AccountCircleIcon />
           </Button>
@@ -46,7 +49,7 @@ function Navbar() {
               "aria-labelledby": "login-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={() => navigate("/user")}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
             <MenuItem
               onClick={async () => {
