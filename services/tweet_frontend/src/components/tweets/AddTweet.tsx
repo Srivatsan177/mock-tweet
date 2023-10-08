@@ -29,7 +29,6 @@ const VisuallyHiddenInput = styled('input')({
 export default function AddTweet({ open, handleClose }) {
     const [tweet, setTweet] = useState("");
     const [imageFile, setImageFile] = useState();
-    console.log(imageFile)
     async function handleSubmit(e) {
         e.preventDefault()
         console.log(e)
