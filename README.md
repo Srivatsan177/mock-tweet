@@ -15,7 +15,7 @@ and react js as front end. And using AWS services
 - MongoDB & Postgres
 
 ## Road Map
-- Modify Home page into two parts one to fetch only following users and other default home page - To Do
+- Modify Home page into two parts one to fetch only following users and other default home page (using redis) - To Do
 - Integrate with kafka and pg model to update counts on postgres table - Done
 - User Follow un follow - Done
 - Use S3 image service to upload image - Done
